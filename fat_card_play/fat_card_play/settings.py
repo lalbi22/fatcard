@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    #'django.middleware.security.SecurityMiddleware', #becouse of problem switched off django 1.7
+    'django.middleware.security.SecurityMiddleware', #becouse of problem switched off django 1.7
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,6 +50,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'fat_card_play.urls'
@@ -68,6 +69,17 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    # "django.contrib.auth.context_processors.auth",
+    # "django.template.context_processors.debug",
+    # "django.template.context_processors.i18n",
+    # "django.template.context_processors.media",
+    # "django.template.context_processors.static",
+    # "django.template.context_processors.tz",
+    # "django.contrib.messages.context_processors.messages"
+    'django.core.context_processors.csrf',
 ]
 
 WSGI_APPLICATION = 'fat_card_play.wsgi.application'
@@ -127,8 +139,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATIC_ROOT = ''
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+        ('assets' , '/var/proftp/test01/card/fat_card_play/static'),
+)

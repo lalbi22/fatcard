@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>This is fatcard play</title>
+	</head>
+	<body>		
+		{% block content %}
+		{% with name="CARDNAME" %}
+		{{ name }}
+		<h1>{{ l_tuple.1.value.1 }}</h1>
+		{{ l_tuple.11.value.0 }}
+		.....
+		{{ l_tuple.11.value.1 }}
+		<h2>{{ l_digit }}</h2>		
+		<h1>{{ aplay }}...{{ bplay }}</h1>		
+		<h2>{{ l_digit }}</h2>
+		<h2>{{ l_digit|length }}</h2>
+		<a href="{% url 'listdigits' %}">Test</a>
+		</br>....		
+		</br>....</br>
+		<h2>{{ l_digit }}</h2><!-- </br> -->
+		<!-- <button type="button"> -->
+		<!-- </br> -->
+		<div class="toolbar">
+		<!-- <h3>A player</h3></br> -->
+		<table class="show">
+		<tr>
+		{% if aplay %}
+		 {% for ap in aplay %}
+		  {% for lt in l_tuple %}
+		   {% ifequal ap lt.value.2 %}
+		  	<td><h1>{{ lt.value.0 }}</h1>
+		  	<img class="pagespic" alt="{{ ap }}" style="width:128px;height:188px;" src="{% static lt.value.1 %}"/></td>
+		   {% endifequal %}
+		  {% endfor %}
+		 {% endfor %}
+		{% else %}
+		 <h2>sorry no card</h2></br>
+		{% endif %}
+		</tr>
+		<!-- </ul> -->
+		<!-- <h3>B player</h3></br> -->
+		<!-- <ul class="show"> -->
+		<tr>
+		{% if bplay %}
+		 {% for bp in bplay %}
+		  {% for lt in l_tuple %}
+		   {% ifequal bp lt.value.2 %}
+		  	<td><h1>{{ lt.value.0 }}</h1>
+		  	<img class="pagespic" alt="{{ bp }}" style="width:128px;height:188px;" src="{% static lt.value.1 %}"/></td>
+		   {% endifequal %}
+		  {% endfor %}
+		 {% endfor %}
+		{% else %}
+		 <h2>sorry no card</h2></br>
+		{% endif %}
+		</tr>
+		</table>
+		<form action="{% url 'cardpages' %}" method="POST">
+		<h1>{{ aplay }},,,,,,{{ bplay }}</h1>
+		<input type="submit" value="Vote" onclick="{{ cardclass.page_devide2 }}"/></form>
+		</div>
+		<!-- </button> -->
+		<hr/>
+		<div class="card">
+		<table style="width:100%">
+		<tr>
+		{% for lt in l_tuple %}
+		<td><img class="pagespic" alt="{{ lt.value.0 }}" style="width:128px;height:188px;" src="{% static lt.value.1 %}">{{ lt }}<img/></td>
+		{% endfor %}
+		</tr>
+		</table>
+		<!-- {{ l_tuple }}  -->	
+		</div>
+		<hr/>
+		{% endwith %}		
+		{% endblock %}
+	</body>
+</html>
