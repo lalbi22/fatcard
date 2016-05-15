@@ -28,33 +28,45 @@ def ajax(request):
     return HttpResponse(html)
 
 def index(request):
-	list_tuple = tuple(hungaryCard.HungaryCard)
-	s1 = str(list_tuple[1].value[0])
-	s2 = str(list_tuple[1].value[1])
-	s3 = s1 + "....." + s2
-	return HttpResponse(s3)
+    list_tuple = tuple(hungaryCard.HungaryCard)
+    s1 = str(list_tuple[1].value[0])
+    s2 = str(list_tuple[1].value[1])
+    s3 = s1 + "....." + s2
+    return HttpResponse(s3)
 
 @csrf_protect
 def cardpages(request):
- 	# list_tuple = tuple(hungaryCard.HungaryCard)
- 	# list_digit = []
- 	# for index in reversed(range(32)):
- 	# 	list_digit.append(index)
- 	content = {'l_tuple':list_tuple, 'l_digit':list_digit, 'cardclass':card, 'aplay':aplayer, 'bplay':bplayer}#, 'sets':assets}
- 	return render(request, "fatcard/base.html", content)	
- 	#return render_to_response("fatcard/base.html", {'l_tuple':list_tuple})
+    # list_tuple = tuple(hungaryCard.HungaryCard)
+    # list_digit = []
+    # for index in reversed(range(32)):
+    #   list_digit.append(index)
+    content = {'l_tuple':list_tuple, 'l_digit':list_digit, 'cardclass':card, 'aplay':aplayer, 'bplay':bplayer}#, 'sets':assets}
+    return render(request, "fatcard/collect.html", content) 
+    #return render_to_response("fatcard/base.html", {'l_tuple':list_tuple})
 
 def listdigits(request):
- 	# g = hungaryCard.GetCards()
- 	# list_digit = g.get_list_digits()
- 	# list_tuple = g.get_list_tuple()
- 	# list_digit = []
- 	# for index in reversed(range(32)):
- 	# 	list_digit.append(index) 	
- 	content = {'l_tuple':list_tuple, 'l_digit':list_digit, 'cardclass':card}#, 'sets':assets#}
- 	return render_to_response("fatcard/base.html", content)	
- 	#return render_to_response("fatcard/base.html", {'l_digit':list_digit})
-	
+    # g = hungaryCard.GetCards()
+    # list_digit = g.get_list_digits()
+    # list_tuple = g.get_list_tuple()
+    # list_digit = []
+    # for index in reversed(range(32)):
+    #   list_digit.append(index)    
+    content = {'l_tuple':list_tuple, 'l_digit':list_digit, 'cardclass':card}#, 'sets':assets#}
+    return render_to_response("fatcard/base.html", content) 
+    #return render_to_response("fatcard/base.html", {'l_digit':list_digit})
+
+@csrf_protect
+def card_devide(request):
+    if request.method == 'POST':
+        card.page_devide2
+    # list_tuple = tuple(hungaryCard.HungaryCard)
+    # list_digit = []
+    # for index in reversed(range(32)):
+    #   list_digit.append(index)
+    content = {'l_tuple':list_tuple, 'l_digit':list_digit, 'cardclass':card, 'aplay':aplayer, 'bplay':bplayer}
+    return render(request, "fatcard/base.html", content)
+    
+    
  # print(hungaryCard.HungaryCard)
  # g = hungaryCard.GetCards()
  # t = g.get_list_tuple()
